@@ -3,7 +3,6 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import database_exists, create_database
 import os
 
-
 # Importando elementos definidos no modelo de dados
 from model.base import Base
 from model.task import Task
@@ -20,7 +19,6 @@ db_url = 'sqlite:///%s/db.sqlite3' % db_path
 engine = create_engine(db_url, echo=False)
 
 Session = sessionmaker(bind=engine)
-
 
 # Cria o banco caso não exista
 if not database_exists(engine.url):

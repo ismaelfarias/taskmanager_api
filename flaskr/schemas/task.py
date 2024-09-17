@@ -7,8 +7,7 @@ from model.task import Task
 class TaskSchema(BaseModel):
     """ Define como uma nova tarefa deve ser representada"""
     titulo: str = "Estudar Python"
-    descricao: str = "Estudar Python e Orientação a Objetos"
-
+    descricao: str = "Descrição da Tarefa"
 
 class TaskListSchema(BaseModel):
     """ Define como a listagem de tarefas será retornada.
@@ -18,7 +17,6 @@ class TaskListSchema(BaseModel):
 class TaskGetSchema(BaseModel):
     """ Define como deve ser a estrutura que representa a busca realizada com base no id da tarefa"""
     id: int = 1
-
 
 def show_tasks(tasks: List[Task]):
     """ Retorna uma representação da tarefa conforme o schema definido em
@@ -38,8 +36,15 @@ def show_tasks(tasks: List[Task]):
 
     return {"tasks": result}
 
-
-def TaskDelSchema(BaseModel):
-    """ Define comom deve ser a estrutura do dado retornado ap[os uma requisição de remoção.]"""
+class TaskDelSchema(BaseModel):
+    """ 
+    Define comom deve ser a estrutura do dado retornado apóss uma requisição de remoção.
+    """
     id: int = 1
     message: str = "Deletado"
+
+class TaskUpdateSchema(BaseModel):
+    id: int = 1
+    titulo: str = "Titulo da Tarefa"
+    descricao: str = "Descricao da Tarefa"
+    status: int = 1

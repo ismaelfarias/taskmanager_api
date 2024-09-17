@@ -16,11 +16,12 @@ class Task(Base):
     dt_atualizacao = Column(DateTime, nullable=True)
     dt_conclusao = Column(DateTime, nullable=True)
 
-    def __init__(self, titulo:str,
+    def __init__(self, titulo:str, descricao:str, status_id:int = 1,
                  dt_criacao:Union[DateTime, None] = None):
         self.titulo = titulo
         self.dt_criacao = dt_criacao
         self.status_id = 1
+        self.descricao = descricao
 
         if dt_criacao:
             self.dt_criacao = dt_criacao
