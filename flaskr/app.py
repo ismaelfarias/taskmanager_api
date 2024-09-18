@@ -5,6 +5,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy import Update
 from model import Session, Task
 from schemas import *
+from logger import logger
 
 info = Info(title="Task Manager API", version="1.0.0")
 app = OpenAPI(__name__, info=info)
@@ -32,13 +33,14 @@ def get_tasks():
     Retorna a listagem de tarefas cadastradas na base de dados, caso a base
     esteja vazia, retorna a task de exemplo a ser exibida no Front End.
     """
+    logger.debug(f"Buscando Tarefas ")
 
     session = Session()
 
     tasks = session.query(Task).all()
 
     if not tasks:
-        return {"tasks": [{"id": 1, "titulo": "Exemplo", "status": "New"}]}
+        return {"tasks": [{"id": 1, "titulo": "Exemplo", "status": "New"}]}, 200
     else:
         print(tasks)
         return show_tasks(tasks), 200
