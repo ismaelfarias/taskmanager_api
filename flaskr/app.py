@@ -42,7 +42,7 @@ def get_tasks():
     tasks = session.query(Task).all()
 
     if not tasks:
-        return {"tasks": [{"id": 1, "titulo": "Exemplo", "status": "New"}]}, 200
+        return {"tasks": []}, 200
     else:
         print(tasks)
         return show_tasks(tasks), 200
