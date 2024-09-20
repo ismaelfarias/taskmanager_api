@@ -40,8 +40,8 @@ class TaskDelSchema(BaseModel):
     """ 
     Define comom deve ser a estrutura do dado retornado apóss uma requisição de remoção.
     """
-    id: int = 1
     message: str = "Deletado"
+    id: int = 1
 
 class TaskUpdateSchema(BaseModel):
     id: int = 1
