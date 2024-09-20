@@ -13,8 +13,8 @@ class Task(Base):
     descricao = Column(String(256), nullable=True)
     status_id = Column(Integer, ForeignKey("status.id"), nullable=False)
     dt_criacao = Column(DateTime, default=datetime.now())
-    dt_atualizacao = Column(DateTime, nullable=True)
-    dt_conclusao = Column(DateTime, nullable=True)
+    dt_atualizacao = Column(DateTime, onupdate=datetime.now(), nullable=True)
+    dt_conclusao = Column(DateTime, onupdate=datetime.now(), nullable=True)
 
     def __init__(self, titulo:str, descricao:str, status_id:int = 1,
                  dt_criacao:Union[DateTime, None] = None):
