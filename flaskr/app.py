@@ -42,15 +42,13 @@ def get_tasks():
     tasks = session.query(Task).all()
 
     if not tasks:
-        return {"tasks": []}, 200
+        return {"tasks": "[]"}, 200
     else:
         print(tasks)
         return show_tasks(tasks), 200
 
 
-@app.get(
-    "/task", responses={"200": TaskGetSchema, "404": ErrorSchema}, tags=[tasks_tag]
-)
+@app.get("/task", responses={"200": TaskGetSchema, "404": ErrorSchema}, tags=[tasks_tag])
 def get_task(query: TaskGetSchema):
     """
     Retorna dados da tarefa de acordo com ID informado
@@ -60,7 +58,7 @@ def get_task(query: TaskGetSchema):
         # Criando conexão com a base
         session = Session()
 
-        task = session.query(Task).filter(Task.id == task_id).first()
+        task = session.query(Task).filter(Task.id == task_id)
 
         if task:
             return show_tasks(task), 200
